@@ -1,7 +1,7 @@
 import os
 import csv
 
-election_csv = os.path.join("Desktop", "Bootcamp", "2.Python", "Mod.3", "3.Challenge", "Resources", "election_data.csv")
+election_csv = os.path.join("Resources", "election_data.csv")
 
 total_votes = []
 
@@ -47,7 +47,7 @@ with open(election_csv, 'r') as election_csv:
         print("Winner: Raymon Anthony Doane")    
     print("---------------------------")  
 
-output_file = os.path.join("Desktop", "Bootcamp", "2.Python", "Mod.3", "3.Challenge", "election_results.txt")
+output_file = os.path.join("election_results.txt")
 
 with open(output_file, "w") as file:
    
