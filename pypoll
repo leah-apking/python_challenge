@@ -1,0 +1,26 @@
+import os
+import csv
+
+election_csv = os.path.join("Desktop", "Bootcamp", "2.Python", "Mod.3", "3.Challenge", "Resources", "election_data.csv")
+
+total_votes = []
+
+
+
+with open(election_csv, 'r') as election_csv:
+    csvreader = csv.reader(election_csv, delimiter=",")
+
+    next(csvreader)
+    
+    row_count = 0
+    for row in csvreader:
+        row_count += 1
+    
+    total_votes = row_count
+    print(f'Total Votes: {total_votes}')
+
+# total number of votes cast
+# complete list of candidates who received votes
+# percentage of votes each cadidate won
+# total number of votes won by each cadidate
+# winner of election based on popular vote
