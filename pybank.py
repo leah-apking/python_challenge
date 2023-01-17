@@ -2,7 +2,7 @@ import os
 import csv
 from statistics import mean
 
-budget_csv = os.path.join("Desktop", "Bootcamp", "2.Python", "Mod.3", "3.Challenge", "Resources", "budget_data.csv")
+budget_csv = os.path.join("Resources", "budget_data.csv")
 
 total_votes = []
 
@@ -48,7 +48,7 @@ with open(budget_csv, 'r') as budget_csv:
     print(f'Greatest Increase in Profits: {max_date} ${max}')
     print(f'Greatest Decrease in Profits: {min_date} ${min}')
 
-output_file = os.path.join("Desktop", "Bootcamp", "2.Python", "Mod.3", "3.Challenge", "financial_analysis.txt")
+output_file = os.path.join("financial_analysis.txt")
 
 with open(output_file, "w") as file:
    
