@@ -1,6 +1,5 @@
 import os
 import csv
-from statistics import mean
 
 budget_csv = os.path.join("Resources", "budget_data.csv")
 
@@ -21,8 +20,8 @@ with open(budget_csv, 'r') as budget_csv:
     for row in csvreader:
         
         row_count += 1
-        value = int(row[1]) + int(value)
         
+        value = int(row[1]) + int(value)
         average = round((value/row_count))
 
         if max < int(row[1]):
