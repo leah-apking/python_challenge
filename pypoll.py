@@ -38,15 +38,15 @@ with open(election_csv, 'r') as election_csv:
     print(f'Diana Degette: {degette_percent}% ({degette})')
     print(f'Raymon Anthony Doane: {doane_percent}% ({doane})')
     print("---------------------------")
-    
-    if stockham < (degette and doane):
+
+    if (stockham > degette) and (stockham > doane):
         print("Winner: Charles Casper Stockham")
-    if degette < (stockham and doane):
+    if (degette > stockham) and (degette > doane):
         print("Winner: Diane Degette")
-    if doane < (stockham and degette):
+    if (doane > stockham) and (doane > degette):
         print("Winner: Raymon Anthony Doane")    
     print("---------------------------")  
-
+    
 output_file = os.path.join("election_results.txt")
 
 with open(output_file, "w") as file:
@@ -60,11 +60,11 @@ with open(output_file, "w") as file:
     file.write(f'Raymon Anthony Doane: {doane_percent}% ({doane})\n')
     file.write("---------------------------\n")
 
-    if stockham < (degette and doane):
+    if (stockham > degette) and (stockham > doane):
         file.write("Winner: Charles Casper Stockham\n")
-    if degette < (stockham and doane):
+    if (degette > stockham) and (degette > doane):
         file.write("Winner: Diane Degette\n")
-    if doane < (stockham and degette):
+    if (doane > stockham) and (doane > degette):
         file.write("Winner: Raymon Anthony Doane\n")    
     file.write("---------------------------\n") 
 
