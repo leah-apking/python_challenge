@@ -1,52 +1,69 @@
 import os
 import csv
 
+# Define file path
 budget_csv = os.path.join("Resources", "budget_data.csv")
 
-total_votes = []
-
+# Open and read budget_csv
 with open(budget_csv, 'r') as budget_csv:
     csvreader = csv.reader(budget_csv, delimiter=",")
     
+    # Skip header row
     next(csvreader)
     
+    # Set variables
     row_count = 0
-    value = 0
-    max = 0
-    min = 0
+    net_total = 0
+    max_change = 0
+    min_change = 0
     max_date = []
     min_date = []
-    
+    previous_row = 0
+    rev_changes = []
+
+    # Loop through csv rows
     for row in csvreader:
-        
+        # Count total months
         row_count += 1
+        # Sum row values to find net total
+        net_total = int(row[1]) + net_total
         
-        value = int(row[1]) + int(value)
-        average = round((value/row_count))
+        # Determine month to month change
+        change = int(row[1]) - previous_row
+        # Redefine previous row
+        previous_row = int(row[1])
+        # Add change to list
+        rev_changes.append(change)
 
-        if max < int(row[1]):
-            max = int(row[1])
+        # Find max change and capture date
+        if max_change < change:
+            max_change = change
+            max_date = row[0]
         else:
-            max = max
+            max_change = max_change
+            max_date = max_date
         
-        if min > int(row[1]):
-            min = int(row[1])
+        # Find min change and capture date
+        if min_change > change:
+            min_change = change
+            min_date = row[0]
         else:
-            min = min
+            min_change = min_change
+            min_date = min_date
 
-        if max == int(row[1]):
-            max_date = str(row[0])
-        if min == int(row[1]):
-            min_date = str(row[0])
+    # Calculate average change
+    average_change = round((sum(rev_changes) / row_count) ,2)
 
+    # Print analysis
     print("Financial Analysis:")
     print("---------------------------")  
     print(f'Total Months: {row_count}')
-    print(f'Net total: ${value}')
-    print(f'Average Change: ${average}')
-    print(f'Greatest Increase in Profits: {max_date} ${max}')
-    print(f'Greatest Decrease in Profits: {min_date} ${min}')
+    print(f'Net total: ${net_total}')
+    print(f'Average Change: ${average_change}')
+    print(f'Greatest Increase in Profits: {max_date} ${max_change}')
+    print(f'Greatest Decrease in Profits: {min_date} ${min_change}')
 
+# Write analysis to txt file
 output_file = os.path.join("financial_analysis.txt")
 
 with open(output_file, "w") as file:
@@ -54,7 +71,7 @@ with open(output_file, "w") as file:
     file.write("Financial Analysis:\n")
     file.write("---------------------------\n")
     file.write(f'Total Months: {row_count}\n')
-    file.write(f'Net total: ${value}\n')
-    file.write(f'Average Change: ${average}\n')
-    file.write(f'Greatest Increase in Profits: {max_date} ${max}\n')
-    file.write(f'Greatest Decrease in Profits: {min_date} ${min}\n')
+    file.write(f'Net total: ${net_total}\n')
+    file.write(f'Average Change: ${average_change}\n')
+    file.write(f'Greatest Increase in Profits: {max_date} ${max_change}\n')
+    file.write(f'Greatest Decrease in Profits: {min_date} ${min_change}\n')
