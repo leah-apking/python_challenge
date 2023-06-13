@@ -52,7 +52,7 @@ with open(budget_csv, 'r') as budget_csv:
             min_date = min_date
 
     # Calculate average change
-    average_change = round((sum(rev_changes) / row_count) ,2)
+    average_change = round((sum(rev_changes) / (row_count - 1)) ,2)
 
     # Print analysis
     print("Financial Analysis:")
